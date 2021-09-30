@@ -1,0 +1,6 @@
+# 日志脱敏实现类
+# 已经实现的有：
+# PhoneLogSensitiveConverter , 通过正则匹配手机号进行替换
+#
+
+com.bruce.common.log.PhoneLogSensitiveConverter
