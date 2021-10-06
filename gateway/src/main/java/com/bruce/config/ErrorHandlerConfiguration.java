@@ -18,10 +18,11 @@ import org.springframework.http.codec.ServerCodecConfigurer;
 import org.springframework.web.reactive.result.view.ViewResolver;
 
 /**
- * 覆盖默认的异常处理
- * 
- * @author yinjihuan
+ * ErrorHandlerConfiguration
+ * 类描述：
  *
+ * @author:zhangyongbin5
+ * @date:2021/9/23
  */
 @Configuration
 @EnableConfigurationProperties({ServerProperties.class, ResourceProperties.class})

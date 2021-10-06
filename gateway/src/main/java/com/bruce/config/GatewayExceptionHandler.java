@@ -18,11 +18,11 @@ import org.springframework.web.reactive.function.server.*;
 import java.util.Map;
 
 /**
- * 自定义异常处理
+ * GatewayExceptionHandler
+ * 类描述：
  *
- * <p>异常时用JSON代替HTML异常信息<p>
- *
- * @author yinjihuan
+ * @author:zhangyongbin5
+ * @date:2021/9/23
  */
 @Slf4j
 public class GatewayExceptionHandler extends DefaultErrorWebExceptionHandler {
@@ -45,7 +45,7 @@ public class GatewayExceptionHandler extends DefaultErrorWebExceptionHandler {
             return response(gatewayException.getErrCode(), gatewayException.getErrMsg());
         } else {
             error.printStackTrace();
-            log.error("gateway throw a error ", error);
+            log.error(buildMessage(request, error), error);
             return response("500", "服务器错误");
         }
     }
@@ -82,7 +82,6 @@ public class GatewayExceptionHandler extends DefaultErrorWebExceptionHandler {
      * @return
      */
     private String buildMessage(ServerRequest request, Throwable ex) {
-
         StringBuilder message = new StringBuilder("Failed to handle request [");
         message.append(request.methodName());
         message.append(" ");
