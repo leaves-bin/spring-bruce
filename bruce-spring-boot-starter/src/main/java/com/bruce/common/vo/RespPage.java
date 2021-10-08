@@ -1,5 +1,7 @@
 package com.bruce.common.vo;
 
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.bruce.common.utils.BeanUtil;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.ToString;
@@ -29,6 +31,10 @@ public final class RespPage<T> implements Serializable {
      * 当前页
      */
     private long current;
+    /**
+     * 总页数
+     */
+    private long totalPages;
     /**
      * 返回数据
      */

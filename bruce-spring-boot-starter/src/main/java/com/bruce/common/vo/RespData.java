@@ -1,6 +1,8 @@
 package com.bruce.common.vo;
 
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.bruce.common.exception.ErrorCodeEnum;
+import com.bruce.common.utils.BeanUtil;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.ToString;
@@ -21,10 +23,10 @@ import java.util.Optional;
 @Data
 public final class RespData<T> implements Serializable {
 
-    private static final String SUCCESS_CODE = "0000";
-    private static final String SUCCESS_MSG = "success";
-    private static final String ERROR_CODE = "10000";
-    private static final String ERROR_MSG = "error";
+    public static final String SUCCESS_CODE = "0000";
+    public static final String SUCCESS_MSG = "success";
+    public static final String ERROR_CODE = "10000";
+    public static final String ERROR_MSG = "error";
 
     /**
      * 状态码

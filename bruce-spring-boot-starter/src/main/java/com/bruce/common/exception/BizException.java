@@ -39,6 +39,11 @@ public class BizException extends RuntimeException {
         this.errMsg = errMsg;
     }
 
+    public BizException(ErrorCodeEnum errCode) {
+        this.errCode = errCode.getCode();
+        this.errMsg = errCode.getDescription();
+    }
+
     public static BizException of(Object errCode, String errMsg, Object... args) {
         return new BizException(errCode, errMsg, args);
     }
