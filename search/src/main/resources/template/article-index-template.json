@@ -1,0 +1,120 @@
+{
+  "index_patterns":[
+    "content_detail_*"
+  ],
+  "settings": {
+    "index": {
+      "number_of_shards": 1,
+      "number_of_replicas": 1,
+      "analysis": {
+        "filter": {
+          "custom_pinyin_filter_first": {
+            "keep_joined_full_pinyin": "true",
+            "lowercase": "true",
+            "none_chinese_pinyin_tokenize": "false",
+            "padding_char": " ",
+            "keep_original": "true",
+            "keep_separate_first_letter": "false",
+            "trim_whitespace": "true",
+            "type": "pinyin",
+            "keep_none_chinese_in_first_letter": "true",
+            "keep_none_chinese_in_joined_full_pinyin": "true",
+            "keep_none_chinese_together": "false",
+            "keep_first_letter": "true",
+            "keep_none_chinese": "false",
+            "keep_full_pinyin": "false"
+          },
+          "custom_pinyin_filter_second": {
+            "keep_joined_full_pinyin": "true",
+            "lowercase": "true",
+            "none_chinese_pinyin_tokenize": "false",
+            "padding_char": " ",
+            "keep_original": "true",
+            "keep_separate_first_letter": "false",
+            "trim_whitespace": "true",
+            "type": "pinyin",
+            "keep_none_chinese_in_first_letter": "false",
+            "keep_none_chinese_in_joined_full_pinyin": "false",
+            "keep_none_chinese_together": "true",
+            "keep_first_letter": "true",
+            "keep_none_chinese": "true",
+            "keep_full_pinyin": "false"
+          }
+        },
+        "analyzer": {
+          "py_analyzer": {
+            "filter": [
+              "asciifolding",
+              "lowercase",
+              "custom_pinyin_filter_first",
+              "custom_pinyin_filter_second"
+            ],
+            "type": "custom",
+            "tokenizer": "ik_smart"
+          }
+        }
+      }
+    }
+  },
+  "mappings": {
+      "_source": {
+        "enabled": true
+      },
+      "properties": {
+        "title": {
+          "analyzer": "ik_smart",
+          "type": "text",
+          "fields": {
+            "py": {
+              "type": "text",
+              "analyzer": "py_analyzer"
+            },
+            "raw": {
+              "type": "keyword"
+            }
+          }
+        },
+        "publishDate": {
+          "type": "date",
+          "format": "yyyy-MM-dd HH:mm:ss"
+        },
+        "submitDate": {
+          "type": "date",
+          "format": "yyyy-MM-dd HH:mm:ss"
+        },
+        "status": {
+          "type": "integer"
+        },
+        "docType": {
+          "type": "integer"
+        },
+        "author": {
+          "type": "keyword"
+        },
+        "url": {
+          "type": "keyword"
+        },
+        "content": {
+          "type": "text",
+          "analyzer": "ik_smart",
+          "fields": {
+            "py": {
+              "type": "text",
+              "analyzer": "py_analyzer"
+            },
+            "raw": {
+              "type": "keyword"
+            }
+          }
+        },
+        "html": {
+          "type": "text",
+          "analyzer": "standard"
+        }
+      }
+  },
+  "aliases": {
+    "content_detail": {}
+  }
+}
+

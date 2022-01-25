@@ -10,8 +10,7 @@
         <module>common</module>
         <module>bruce-spring-boot-logg-starter</module>
         <module>bruce-spring-boot-starter</module>
-        <module>bruce-sys</module>
-        <module>bruce-generator</module>
+        <module>search</module>
     </modules>
 
     <parent>

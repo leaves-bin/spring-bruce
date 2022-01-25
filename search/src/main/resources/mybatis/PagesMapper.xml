@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.bruce.search.biz.mapper.PageDetailMapper">
+	<resultMap id="BaseResultMap" type="com.bruce.search.biz.domain.PageDetail">
+		<result property="contentid" column="CONTENTID" />
+		<result property="content" column="CONTENT" jdbcType="BLOB" typeHandler="com.bruce.search.common.MyClobTypeHandlerOracle" />
+	</resultMap>
+
+	<select id="selectPages" resultMap="BaseResultMap">
+		SELECT * FROM cms_pages where contentid in
+		<foreach item="id" collection="idList" separator="," open="(" close=")">
+			#{id}
+		</foreach>
+	</select>
+
+</mapper>
+

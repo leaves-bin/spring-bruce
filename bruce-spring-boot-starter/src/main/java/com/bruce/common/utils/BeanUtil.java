@@ -4,7 +4,10 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.bruce.common.vo.RespPage;
 import org.springframework.beans.BeanUtils;
 
+import java.lang.reflect.Field;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
@@ -66,6 +69,18 @@ public class BeanUtil {
         respPage.setTotalPages(data.getPages());
         respPage.setData(BeanUtil.copyList(data.getRecords(), target));
         return respPage;
+    }
+
+    public static Map<String, Object> toMap(Object object) throws Exception {
+        Map<String, Object> map = new HashMap<>();
+
+        Class<?> aClass = object.getClass();
+        Field[] declaredFields = aClass.getDeclaredFields();
+        for (Field field : declaredFields) {
+            field.setAccessible(true);
+            map.put(field.getName(), field.get(object));
+        }
+        return map;
     }
 
 }
